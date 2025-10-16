@@ -10,14 +10,18 @@ fin="\033[0m\e[0m"
 
 
 function numeroAleatorio(){
-     aleatorio=$((RANDOM % 100 + 1))
-     echo "El numero aleatorio es: $aleatorio"
+     
+    for i in {1..100}; do
+         aleatorio=$((RANDOM % 32 + 1))
+
+       echo -e "$aleatorio"
+    done
 
 
 }
 
 
-
+numeroAleatorio
 
 function apostar(){
     numeroAleatorio
@@ -35,6 +39,7 @@ function apostar(){
 
                elif [[ "$aleatorio" -eq "$i"  ]]; then 
                   echo -e "El numero es:$aleatorio\n Color:negro \nEsta en la tercer tercio que va desde {25..32}"
+                fi
         
           else 
             echo -e "Ganaste y el numero es impar"
@@ -45,6 +50,8 @@ function apostar(){
 
                elif [[ "$aleatorio" -eq "$i"  ]]; then 
                   echo -e "El numero es:$aleatorio\n Color:negro \nEsta en la tercer tercio que va desde {25..32}"
+               fi
+
 
 
           fi          
@@ -56,31 +63,33 @@ function apostar(){
 
 }
 
-
-columna1="$(for i in {1..12}; do
+# columna1="$(for i in {1..12}; do
   
-    if (( $i % 2 == 0 )); then 
-       echo -e "${azul}$i${fin}"
-     else 
-      echo "${rojo}$i${fin}"
-      fi  
-done)"
+#     if (( $i % 2 == 0 )); then 
+#        echo -e "${azul}$i${fin}"
+#      else 
+#       echo "${rojo}$i${fin}"
+#       fi  
+# done)"
 
-columna2="$(for i in {13..24}; do
-       if (( $i % 2 == 0 )); then 
-       echo -e "${azul}$i${fin}"
-     else 
-      echo "${rojo}$i${fin}"
-      fi  
-done)"
+# columna2="$(for i in {13..24}; do
+#        if (( $i % 2 == 0 )); then 
+#        echo -e "${azul}$i${fin}"
+#      else 
+#       echo "${rojo}$i${fin}"
+#       fi  
+# done)"
 
-columna3="$(for i in {25..36}; do
-       if (( $i % 2 == 0 )); then 
-       echo -e "${azul}$i${fin}"
-     else 
-      echo "${rojo}$i${fin}"
-      fi  
-done)"
+# columna3="$(for i in {25..36}; do
+#        if (( $i % 2 == 0 )); then 
+#        echo -e "${azul}$i${fin}"
+#      else 
+#       echo "${rojo}$i${fin}"
+#       fi  
+# done)"
 
-columnas="$(paste <(echo -e "0\n") <(echo -e "$columna1") <(echo -e "$columna2") <(echo -e "$columna3"))"
-echo -e "$columnas"
+# columnas="$(paste <(echo -e "0\n") <(echo -e "$columna1") <(echo -e "$columna2") <(echo -e "$columna3"))"
+# echo -e "$columnas"
+
+
+
