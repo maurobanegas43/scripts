@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Primera tecnica Martin gala 
-
 #Esta tecnica intenta aumentar al doble la apuesta si pierde y si gana volver a empezar 
 
 
@@ -106,7 +105,6 @@ function metodos(){
                 if [[  "$jugar" == "si"  ]];then
                    echo -e "${rojo}Decidiste seguir jugando${fin}"
                    break
-
                    
                 else 
                   echo -e "${verde}Buena decision , retirarse siempre es la mejor opcion${fin}"

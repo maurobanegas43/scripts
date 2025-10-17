@@ -21,10 +21,47 @@ function numeroAleatorio(){
 }
 
 
+function ruleta (){
+  columna1="$(for i in {1..12}; do
+  
+    if (( $i % 2 == 0 )); then 
+       echo -e "${azul}$i${fin}"
+     else 
+      echo "${rojo}$i${fin}"
+      fi  
+done)"
+
+columna2="$(for i in {13..24}; do
+       if (( $i % 2 == 0 )); then 
+       echo -e "${azul}$i${fin}"
+     else 
+      echo "${rojo}$i${fin}"
+      fi  
+done)"
+
+columna3="$(for i in {25..36}; do
+       if (( $i % 2 == 0 )); then 
+       echo -e "${azul}$i${fin}"
+     else 
+      echo "${rojo}$i${fin}"
+      fi  
+done)"
+
+columnas="$(paste <(echo -e "0\n") <(echo -e "$columna1") <(echo -e "$columna2") <(echo -e "$columna3"))"
+echo -e "$columnas"
+
+
+
+}
+
+
+
+
 numeroAleatorio
 
 function apostar(){
     numeroAleatorio
+    ruleta
      echo -e "A que numero quieres apostar"
      read numero
      echo -e "$numero"
@@ -62,34 +99,6 @@ function apostar(){
 
 
 }
-
-# columna1="$(for i in {1..12}; do
-  
-#     if (( $i % 2 == 0 )); then 
-#        echo -e "${azul}$i${fin}"
-#      else 
-#       echo "${rojo}$i${fin}"
-#       fi  
-# done)"
-
-# columna2="$(for i in {13..24}; do
-#        if (( $i % 2 == 0 )); then 
-#        echo -e "${azul}$i${fin}"
-#      else 
-#       echo "${rojo}$i${fin}"
-#       fi  
-# done)"
-
-# columna3="$(for i in {25..36}; do
-#        if (( $i % 2 == 0 )); then 
-#        echo -e "${azul}$i${fin}"
-#      else 
-#       echo "${rojo}$i${fin}"
-#       fi  
-# done)"
-
-# columnas="$(paste <(echo -e "0\n") <(echo -e "$columna1") <(echo -e "$columna2") <(echo -e "$columna3"))"
-# echo -e "$columnas"
 
 
 
