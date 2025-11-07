@@ -10,7 +10,6 @@ function numeroAleatorio(){
 
          aleatorio=$((RANDOM % 32 ))
          echo -e "$aleatorio"
-  
 }
 
 
@@ -116,21 +115,23 @@ function  ingresarSaldo() {
 
 function metodos(){   
   
-
+   
    opcion="$1"
+   echo "este es el numero: $aleatorio"
 
    echo -e "Vamos jugar utilizando el metodo Martin Gala"
    echo -e "Este supuestamente si uno pierde tiene que aumentar al doble su apuesta inicial y asi sucesivamente"
    echo -e "Vamos a automatizar este proceso"
    echo -e "Hay que apostar al par o al impar y continuar hasta que ganes o te quedes sin saldo"
    echo -e "Ingresa el saldo total que tienes disponible para jugar  y la cantidad inicial de apuesta , decide si vas a jugar con el par o el impar" 
-    read saldo 
-    read apuesta 
-    read juego
-
+   read saldo 
+   read apuesta 
+   read juego   
    while true ; do
    
    if [[ "$juego" == "par" ]]; then
+    aleatorio="$(numeroAleatorio)"
+        echo -e "El numero es :$aleatorio"
         if (( $aleatorio % 2 == 0)); then
           echo -e "Apuesta inicial:$apuesta"
           echo -e "Nuevo Saldo:$(($saldo + $apuesta * 2 ))"
@@ -140,7 +141,7 @@ function metodos(){
           if [[ "$jugar" == "si" ]]; then
               echo "Decidiste seguir jugando \n Ingresa tu nueva apuesta inicial"
               read apuesta
-              break
+            
           elif [[ "$jugar" == "no" ]]; then 
               echo -e "Buena Decision"
               exit 0
@@ -155,10 +156,11 @@ function metodos(){
             echo "Perdiste tu apuesta inicial ahora sera el doble"
             echo -e "Nueva apuesta:$apuesta"
             echo -e "Nuevo saldo :$saldo" 
+        fi
             
           
     elif [[ "$juego" == "impar" ]]; then
-
+      aleatorio="$(numeroAleatorio)"
        if (( $aleatorio % 2 == 0)); then
           echo -e "Apuesta inicial:$apuesta"
           echo -e "Nuevo Saldo:$(($saldo + $apuesta * 2 ))"
@@ -185,20 +187,13 @@ function metodos(){
             echo -e "Nuevo saldo :$saldo" 
       fi
    fi      
-
-         
-        
-             
-             
-                  
-
-          
-
-  
-
-
-
-
+   
+   # Verificar si el saldo es 0 o negativo para salir del bucle
+   if (( saldo <= 0 )); then
+       echo -e "${rojo}Te has quedado sin saldo. Fin del juego.${fin}"
+       exit 1
+   fi
+done
 }
 
 
@@ -234,21 +229,21 @@ function apostar(){
 
 
 
-while getopts "nh" opcion; do
+while getopts "nhm" opcion; do
       case $opcion in 
-        
         n) apostar ;;
         h) ruleta 
            echo "" 
            echo -e "${rojo}Bienvenidos al panel de ayuda ${fin} \n 1) la opcion -n ${verde}juego normal${fin} \n2)${verde} -m metodo Tienes que ingresar un metodo  ejemplo -m martingala (me falta agregar el segundo metodo) ${fin}"
            echo ""
            ;;
+        m) 
+           
+           metodos
+           ;;
         *) echo "Opcion invalida" ;;
-       
-
       esac 
- done          
-
+done
 
 
 
